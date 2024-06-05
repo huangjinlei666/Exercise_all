@@ -1,0 +1,52 @@
+{
+  "pageIndex": 1,
+  "pageSize": 10,
+  "totalRecords": 3,
+  "data": [
+    {
+      "id": "411942704906375168",
+      "machineId": "410521265103835136",
+      "machineName": "机组1-1-1-1",
+      "name": "工况2",
+      "sensorId": "410428296019447808",
+      "sensorName": "传感器01",
+      "featureIdentifier": "acceleratedSpeed",
+      "featureName": "加速度值",
+      "ratedValue": 2001.0,
+      "ratedUpperLimitRate": 13.0,
+      "ratedLowerLimitRate": 12.0,
+      "createdAt": 1578381260006,
+      "updatedAt": null
+    },
+    {
+      "id": "411932696089071616",
+      "machineId": "410521265103835136",
+      "machineName": "机组1-1-1-1",
+      "name": "工况1",
+      "sensorId": "410428296019447808",
+      "sensorName": "传感器01",
+      "featureIdentifier": "acceleratedSpeed",
+      "featureName": "加速度值",
+      "ratedValue": 2000.0,
+      "ratedUpperLimitRate": 24.0,
+      "ratedLowerLimitRate": 12.0,
+      "createdAt": 1578378873718,
+      "updatedAt": null
+    },
+    {
+      "id": "411631306007515136",
+      "machineId": "410521265103835136",
+      "machineName": "机组1-1-1-1",
+      "name": "工况3",
+      "sensorId": "410428296019447808",
+      "sensorName": "传感器01",
+      "featureIdentifier": "speed",
+      "featureName": null,
+      "ratedValue": 3050.0,
+      "ratedUpperLimitRate": 61.0,
+      "ratedLowerLimitRate": 37.0,
+      "createdAt": 1578307016745,
+      "updatedAt": null
+    }
+  ]
+}

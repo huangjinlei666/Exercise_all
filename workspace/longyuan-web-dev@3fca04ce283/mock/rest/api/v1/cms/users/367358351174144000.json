@@ -1,0 +1,13 @@
+{
+  "id": "367358351174144000",
+  "name": "admin",
+  "email": "admin@fatri.cn",
+  "phoneNumber": null,
+  "description": "管理员用户",
+  "enable": true,
+  "roleId": "366928043610083328",
+  "roleName": "管理员",
+  "hierarchyId": "399627073355911168",
+  "createdAt": 1578307249575,
+  "updatedAt": 1578538638202
+}

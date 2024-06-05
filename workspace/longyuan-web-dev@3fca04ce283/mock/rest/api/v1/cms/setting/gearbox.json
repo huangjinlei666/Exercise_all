@@ -1,0 +1,31 @@
+{
+  "pageIndex": 1,
+  "pageSize": 10,
+  "totalRecords": 3,
+  "data": [
+    {
+      "id": "412959614057975808",
+      "manufacturer": "第三方",
+      "gearType": "sf",
+      "gearModel": "ad",
+      "gearRatio": "1:22",
+      "picture": null
+    },
+    {
+      "id": "412958421365690368",
+      "manufacturer": "南高齿",
+      "gearType": "行星齿轮",
+      "gearModel": "X21",
+      "gearRatio": "\"3:26\"",
+      "picture": { "name": "abc62aef-d69a-48ab-a62e-a0a72c173951.image/jpeg", "content": null }
+    },
+    {
+      "id": "412284100691496960",
+      "manufacturer": "厂商1",
+      "gearType": "类型1",
+      "gearModel": "型号1",
+      "gearRatio": "1：20",
+      "picture": { "name": "e2f752d2-9fab-49d1-ae81-ca0384c8aa62.0-厦门(09-11-11-47-57).jpg", "content": null }
+    }
+  ]
+}

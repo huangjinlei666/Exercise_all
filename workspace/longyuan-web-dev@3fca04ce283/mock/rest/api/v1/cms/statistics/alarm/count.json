@@ -1,0 +1,45 @@
+{
+  "pageIndex": 1,
+  "pageSize": 10,
+  "totalRecords": 2,
+  "data": [
+    {
+      "id": "1",
+      "machineId": "410521265103835136",
+      "machineName": "机组1-1-1-1",
+      "sensorId": "410428296019447808",
+      "sensorName": "传感器01",
+      "workConditionId": "411942704906375168",
+      "workConditionName": "工况2",
+      "featureIdentifier": "speed",
+      "featureName": "加速度值",
+      "featureValue": "66",
+      "level": "WARN",
+      "threshold": "60",
+      "occurTime": 1578389369148,
+      "verifyStatus": "VERIFIED",
+      "verifierId": "367358351174144000",
+      "verifierName": "admin",
+      "latest": true
+    },
+    {
+      "id": "132421",
+      "machineId": "410521265103835136",
+      "machineName": "机组1-1-1-1",
+      "sensorId": "410428296019447808",
+      "sensorName": "传感器01",
+      "workConditionId": "411942704906375168",
+      "workConditionName": "工况2",
+      "featureIdentifier": "speed",
+      "featureName": "加速度值",
+      "featureValue": "66",
+      "level": "WARN",
+      "threshold": "60",
+      "occurTime": 1578389369148,
+      "verifyStatus": "VERIFIED",
+      "verifierId": "367358351174144000",
+      "verifierName": "admin",
+      "latest": true
+    }
+  ]
+}

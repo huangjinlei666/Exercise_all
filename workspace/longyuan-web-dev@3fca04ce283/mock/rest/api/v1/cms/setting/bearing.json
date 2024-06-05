@@ -1,0 +1,51 @@
+{
+  "pageIndex": 1,
+  "pageSize": 10,
+  "totalRecords": 4,
+  "data": [
+    {
+      "id": "412958383889584128",
+      "manufacturer": "SKF",
+      "bearingNumber": "234432MB1/SP",
+      "identifier": "F",
+      "innerFrequency": 15.271,
+      "outerFrequency": 13.783,
+      "rollFrequency": 11.568,
+      "cageFrequency": 0.477,
+      "referenceSpeed": 60.0
+    },
+    {
+      "id": "412363369597767680",
+      "manufacturer": "SKF",
+      "bearingNumber": "234432MB1/SP",
+      "identifier": "F",
+      "innerFrequency": 15.271,
+      "outerFrequency": 13.783,
+      "rollFrequency": 11.568,
+      "cageFrequency": 0.477,
+      "referenceSpeed": 60.0
+    },
+    {
+      "id": "412331047435505664",
+      "manufacturer": "SKF",
+      "bearingNumber": "234432MB1/SP",
+      "identifier": "F",
+      "innerFrequency": 15.271,
+      "outerFrequency": 13.783,
+      "rollFrequency": 11.568,
+      "cageFrequency": 0.477,
+      "referenceSpeed": 60.0
+    },
+    {
+      "id": "412330741641383936",
+      "manufacturer": "SKF",
+      "bearingNumber": "234432MB1/SP",
+      "identifier": "F",
+      "innerFrequency": 15.271,
+      "outerFrequency": 13.783,
+      "rollFrequency": 11.568,
+      "cageFrequency": 0.477,
+      "referenceSpeed": 60.0
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmdhbml6YXRpb25JZCI6Mzk5NjI3MDczMzU1OTExMTY4LCJleHAiOjE1Nzg3Mzk3OTgsInN1YmplY3RJZCI6MzY3MzU4MzUxMTc0MTQ0MDAwfQ.qtk2Ltb8dI-IPSuzTDDz2UIpGIGK8yti9Q1XZqhrT4Y",
+  "expiresIn": 86400,
+  "user": {
+    "id": "367358351174144000",
+    "name": "admin",
+    "email": "admin@fatri.cn",
+    "phoneNumber": null,
+    "description": "管理员用户",
+    "enable": true,
+    "roleId": "366928043610083328",
+    "roleName": "管理员",
+    "hierarchyId": "399627073355911168",
+    "createdAt": 1578307249575,
+    "updatedAt": 1578538638202
+  }
+}

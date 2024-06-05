@@ -1,0 +1,49 @@
+pipeline {
+    agent {
+        docker {
+            image 'base/builder:1.0.0'
+            args '-e STAGE_SERVER=${STAGE_SERVER} -e EXPOSE=${EXPOSE} -v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn versions:set -DnewVersion=${CMS_BUILD_VERSION}'              
+                sh 'mvn -B -P prod -DskipTests clean package'
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'mvn -B -P prod -DskipTests deploy'
+            }
+        }
+        stage('Stage') {
+            steps {
+                // docker_tag
+                sh 'echo -n $(xmllint --xpath \'/*[local-name()="project"]/*[local-name()="artifactId"]/text()\' pom.xml) > artifact_id'
+                sh 'echo -n fregata/$(<artifact_id): > docker_tag'
+                sh 'echo -n $(xmllint --xpath \'/*[local-name()="project"]/*[local-name()="version"]/text()\' pom.xml) >> docker_tag'
+                sh 'docker -H ${STAGE_SERVER} network inspect cms || docker -H ${STAGE_SERVER} network create --subnet=172.21.0.0/16 cms'
+
+                // server
+                sh 'docker -H ${STAGE_SERVER} pull docker.xirenma.local/$(<docker_tag)'
+                //tag image version as latest
+                sh 'docker -H ${STAGE_SERVER} tag docker.xirenma.local/$(<docker_tag) docker.xirenma.local/fregata/$(<artifact_id):latest'              
+                sh 'docker -H ${STAGE_SERVER} rm -f $(cut -d: -f1 docker_tag | tr / .) || true'
+                sh 'docker -H ${STAGE_SERVER} run -d --restart always ${EXPOSE:+ -p ${EXPOSE//,/ -p }} \
+                 -e "FREGATA_WEB_SSL_ENABLE=${FREGATA_WEB_SSL_ENABLE}" \
+                 -e "FREGATA_WEB_SSL_PORT=${FREGATA_WEB_SSL_PORT}" \
+                 -e "FREGATA_WEB_SSL_SERVER_NAME=${FREGATA_WEB_SSL_SERVER_NAME}" \
+                 -e "FREGATA_WEB_SSL_PRIVATE_KEY_PATH=${FREGATA_WEB_SSL_PRIVATE_KEY_PATH}" \
+                 -e "FREGATA_WEB_SSL_PUBLIC_KEY_PATH=${FREGATA_WEB_SSL_PUBLIC_KEY_PATH}" \
+                 -e "FREGATA_CORE_SERVER=${FREGATA_CORE_SERVER}" \
+                 -e "ENV_LOGO_MODE=${ENV_LOGO_MODE}" \
+                 -e "FARM_NAME=${CMS_INSTALL_WORKSHOP_NAME}" \
+                 -v /usr/local/nginx/nginx_fregata.conf:/home/fregata/fregata-web/conf/fregata-web.conf \
+                 --net cms --ip 172.21.0.101 --name $(cut -d: -f1 docker_tag | tr / .) docker.xirenma.local/$(<docker_tag)'
+
+            }
+        }
+    }
+}

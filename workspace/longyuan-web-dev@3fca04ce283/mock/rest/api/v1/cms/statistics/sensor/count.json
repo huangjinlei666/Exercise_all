@@ -1,0 +1,16 @@
+{
+  "sensorDTOList": [
+    {
+      "id": "410428296019447808",
+      "machineId": null,
+      "machineName": null,
+      "name": "传感器01",
+      "alarmStatus": "WARN",
+      "additionalInfo": null,
+      "variates": [{ "name": "加速度值", "identifier": "acceleratedSpeed", "value": null }]
+    }
+  ],
+  "normalTotal": 0,
+  "warnTotal": 1,
+  "errorTotal": 0
+}

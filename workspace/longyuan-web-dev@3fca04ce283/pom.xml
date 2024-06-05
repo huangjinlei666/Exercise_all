@@ -1,0 +1,200 @@
+<!-- Copyright © 2019 Fatri -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cn.fatri.fregata</groupId>
+    <artifactId>fregata-web</artifactId>
+    <version>1.2.21-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Fregata Server UI</name>
+    <url>https://fatri.io</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
+        <docker.registry>docker.xirenma.local</docker.registry>
+        <test.skip>true</test.skip>
+    </properties>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/dist</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>${frontend-maven-plugin.version}</version>
+                <configuration>
+                    <installDirectory>target</installDirectory>
+                    <workingDirectory>${basedir}</workingDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+
+                        <id>install node and yarn</id>
+                        <goals>
+                            <goal>install-node-and-yarn</goal>
+                        </goals>
+                        <configuration>
+                            <nodeDownloadRoot>http://npm.taobao.org/mirrors/node/</nodeDownloadRoot>
+		                    <yarnDownloadRoot>http://nexus.xirenma.local/repository/maven-releases/com/github/eirslett/yarn/</yarnDownloadRoot>
+                            <nodeVersion>v12.13.0</nodeVersion>
+                            <yarnVersion>v1.22.4</yarnVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>yarn install</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install --no-optional --prefer-offline</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <imageName>fregata/${project.artifactId}</imageName>
+                    <forceTags>true</forceTags>
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                    <dockerDirectory>docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.basedir}</directory>
+                            <include>dist/</include>
+                        </resource>
+                    </resources>
+                    <buildArgs>
+                        <build_version>${project.version}</build_version>
+                    </buildArgs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>tag-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <image>fregata/${project.artifactId}:${project.version}</image>
+                            <newName>${docker.registry}/fregata/${project.artifactId}:${project.version}</newName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>push-image</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>push</goal>
+                        </goals>
+                        <configuration>
+                            <imageName>${docker.registry}/fregata/${project.artifactId}:${project.version}</imageName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>${frontend-maven-plugin.version}</version>
+                        <configuration>
+                            <installDirectory>target</installDirectory>
+                            <workingDirectory>${basedir}</workingDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>yarn test</id>
+                                <goals>
+                                    <goal>yarn</goal>
+                                </goals>
+                                <configuration>
+                                    <skip>${test.skip}</skip>
+                                    <arguments>run test</arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>yarn build</id>
+                                <goals>
+                                    <goal>yarn</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>run buildProd</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>yarn-start</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>${frontend-maven-plugin.version}</version>
+                        <configuration>
+                            <installDirectory>target</installDirectory>
+                            <workingDirectory>${basedir}</workingDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>yarn start</id>
+                                <goals>
+                                    <goal>yarn</goal>
+                                </goals>
+
+                                <configuration>
+                                    <arguments>start</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <distributionManagement>
+        <repository>
+            <id>maven-releases</id>
+            <name>Fatri Releases Repository</name>
+            <url>http://nexus.xirenma.local/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven-snapshots</id>
+            <name>Fatri Snapshots Repository</name>
+            <url>http://nexus.xirenma.local/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

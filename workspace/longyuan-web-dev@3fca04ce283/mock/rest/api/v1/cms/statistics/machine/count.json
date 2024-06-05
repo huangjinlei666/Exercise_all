@@ -1,0 +1,9 @@
+{
+  "machineStatusDTOList": [
+    { "id": "410521265103835136", "name": "机组1-1-1-1", "workCondition": null, "alarmLevel": null },
+    { "id": "410794571040165888", "name": "机组1-1-1-2", "workCondition": null, "alarmLevel": null }
+  ],
+  "normalTotal": 2,
+  "warnTotal": 0,
+  "errorTotal": 0
+}

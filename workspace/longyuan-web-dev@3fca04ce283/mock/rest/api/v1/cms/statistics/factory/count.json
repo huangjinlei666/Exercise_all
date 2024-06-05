@@ -1,0 +1,29 @@
+[
+  {
+    "factoryName": "厂站1-1",
+    "factoryLongitude": "113.92",
+    "factoryLatitude": "22.52",
+    "total": 4,
+    "normalTotal": 4,
+    "warnTotal": 0,
+    "errorTotal": 0
+  },
+  {
+    "factoryName": "厂站1-2",
+    "factoryLongitude": "110.23",
+    "factoryLatitude": "22.95",
+    "total": 1,
+    "normalTotal": 1,
+    "warnTotal": 0,
+    "errorTotal": 0
+  },
+  {
+    "factoryName": "厂站1-3",
+    "factoryLongitude": "113.45",
+    "factoryLatitude": "22.45",
+    "total": 1,
+    "normalTotal": 1,
+    "warnTotal": 0,
+    "errorTotal": 0
+  }
+]

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="logo-mode" content="ENV_LOGO_MODE" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <title>故障诊断系统-FARM_NAME</title>
+  <style>
+    html,
+    body,
+    #app {
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+      width: 100%;
+    }
+
+    #cms-main__loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: 0;
+      padding: 0;
+      background-color: #303133;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #cms-main__loading .cms-main__loading-img {
+      height: 32px;
+      width: 32px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <div id="cms-main__loading">
+    <img class="cms-main__loading-img" src="/images/loading-spin.svg" alt="loading" />
+  </div>
+
+  <script>
+    // eslint-disable-next-line
+    setTimeout(function getLang() {
+      const lang = document.querySelector('html').getAttribute('lang');
+      if (lang === 'en') {
+        document.title = 'Fault Diagnosis System';
+      } else {
+        // document.title = '故障诊断系统';
+      }
+    }, 1000);
+  </script>
+</body>
+
+</html>

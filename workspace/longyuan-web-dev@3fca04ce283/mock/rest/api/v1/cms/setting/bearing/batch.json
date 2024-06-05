@@ -1,0 +1,13 @@
+[
+  {
+    "id": "413091174581145600",
+    "manufacturer": "SKF",
+    "bearingNumber": "234432MB1/SP",
+    "identifier": "F",
+    "innerFrequency": 15.271,
+    "outerFrequency": 13.783,
+    "rollFrequency": 11.568,
+    "cageFrequency": 0.477,
+    "referenceSpeed": 60.0
+  }
+]

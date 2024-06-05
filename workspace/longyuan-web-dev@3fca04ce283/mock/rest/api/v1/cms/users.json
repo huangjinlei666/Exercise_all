@@ -1,0 +1,33 @@
+{
+  "pageIndex": 1,
+  "pageSize": 10,
+  "totalRecords": 2,
+  "data": [
+    {
+      "id": "412599542169604096",
+      "name": "user-test-1",
+      "email": "",
+      "phoneNumber": "18814525787",
+      "description": "",
+      "enable": true,
+      "roleId": "366928043610083328",
+      "roleName": "管理员",
+      "hierarchyId": "409383059742396416",
+      "createdAt": 1578537862214,
+      "updatedAt": 1578538036251
+    },
+    {
+      "id": "367358351174144000",
+      "name": "admin",
+      "email": "admin@fatri.cn",
+      "phoneNumber": null,
+      "description": "管理员用户",
+      "enable": true,
+      "roleId": "366928043610083328",
+      "roleName": "管理员",
+      "hierarchyId": "399627073355911168",
+      "createdAt": 1578307249575,
+      "updatedAt": 1578538638202
+    }
+  ]
+}

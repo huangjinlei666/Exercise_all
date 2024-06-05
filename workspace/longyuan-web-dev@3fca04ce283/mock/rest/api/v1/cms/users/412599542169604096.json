@@ -1,0 +1,13 @@
+{
+  "id": "412599542169604096",
+  "name": "user-test-1",
+  "email": "",
+  "phoneNumber": "18814525787",
+  "description": "",
+  "enable": true,
+  "roleId": "366928043610083328",
+  "roleName": "管理员",
+  "hierarchyId": "409383059742396416",
+  "createdAt": 1578537862214,
+  "updatedAt": 1578538036251
+}

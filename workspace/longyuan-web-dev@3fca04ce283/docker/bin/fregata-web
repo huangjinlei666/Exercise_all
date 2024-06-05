@@ -1,0 +1,17 @@
+#!/bin/sh
+
+fregataWebHome=$(dirname $(dirname $(readlink -f $0)))
+
+case "$1" in
+    version)
+        ;;
+    *)
+        #sed -i -e "/server/s/localhost/${FREGATA_CORE_SERVER:-localhost}/" ${fregataWebHome}/conf/fregata-web.conf
+        sed -i -e "s/ENV_LOGO_MODE/${ENV_LOGO_MODE:-test}/" ${fregataWebHome}/html/index.html
+        sed -i -e "s/FARM_NAME/${FARM_NAME:-风电场}/" ${fregataWebHome}/html/index.html
+        if [ "${FREGATA_WEB_SSL_ENABLE:-false}" = "true" ]; then
+            sed -i -e "/listen 8080;/a\listen ${FREGATA_WEB_SSL_PORT:-443} ssl;server_name ${FREGATA_WEB_SSL_SERVER_NAME:-*.fatri.cn};ssl_certificate ${FREGATA_WEB_SSL_PRIVATE_KEY_PATH:-/root/ca/server.crt};ssl_certificate_key ${FREGATA_WEB_SSL_PUBLIC_KEY_PATH:-/root/ca/server.key};" ${fregataWebHome}/conf/fregata-web.conf
+        fi
+        exec nginx
+        ;;
+esac
